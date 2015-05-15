@@ -44,7 +44,7 @@
     -->
 
     <!-- Plugins -->
-
+    <gap:plugin name="com.jamiestarke.webviewdebug" version="1.0.8" />
     <!-- Core plugins -->
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
