@@ -16,6 +16,9 @@
                alert(entry.fullPath); // entry is fileEntry object
       }, function (error) {
                alert("Some error");
+               alert(error.source);
+               alert(error.target);
+               alert(error.code);
       });
    })
 }
