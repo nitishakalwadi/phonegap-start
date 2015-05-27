@@ -6,11 +6,12 @@
         <script src="js/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript">
-            function storeIntelligrapeLogo(){alert(fs.root.fullPath);
+            function storeIntelligrapeLogo(){
   var url = "http://www.intelligrape.com/images/logo.png"; // image url
   window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
       var imagePath = fs.root.fullPath + "/logo.png"; // full file path
       var fileTransfer = new FileTransfer();
+      alert(fs.root.fullPath);
       fileTransfer.download(url, imagePath, function (entry) {
                alert(entry.fullPath); // entry is fileEntry object
       }, function (error) {
