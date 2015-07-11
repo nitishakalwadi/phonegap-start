@@ -15,53 +15,18 @@ see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-cu
 for more details -jm */
 function onDeviceReady()
 {
-var interval;
-    function displayImage(){
-    var url = "http://instahot.tk/getImage.php";
-    $.ajax({
-	    url:url,
-	    dataType: "json",
-	    success: function(data){
-		    console.log(data);
-		    $("#image").css({"background":"url('"+data.url+"')"});
-		    $("#image").css({"background-repeat":"no-repeat"});
-		    $("#image").css({"background-size":"contain"});
-		    $("#image").css({"background-attachment":"fixed"});
-		    $("#image").css({"background-color":"black"});
-		    $("#image").css({"background-position":"center center"});
-		
-	    }
+    $("#btn").click(function(){
+        var text = $("#enter").val();
+        alert(text);
     });
-    }
-    displayImage();
-    interval = setInterval(displayImage, 7000);
     
 }
-</script>
-<style>
-    body{
-	    margin:0px
-    }
-
-    #image{
-	    background: url('https://scontent.cdninstagram.com/hphotos-ash/t51.2885-15/e15/10818038_821142204575758_1943261650_n.jpg');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-attachment: fixed;
-        background-color: black;
-        background-position: center center;
-    }
-</style>
+        </script>
     </head>
     <body>
-<div id="image"></div>
-
-
-<script type="text/javascript">
-var width = $(window).width();
-var height = $(window).height();
-$("#image").css({"width":width+"px"});
-$("#image").css({"height":height+"px"});
-</script>
-</body>
+        <div>
+            <input id="enter" type="text" name="enter"/>
+            <button id="btn">click me</button>
+        </div>
+    </body>
 </html>
