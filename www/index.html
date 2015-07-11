@@ -9,96 +9,59 @@
     <script type="text/javascript">
  
  
-// If you want to prevent dragging, uncomment this section
-/*
-function preventBehavior(e) 
-{ 
-      e.preventDefault(); 
-    };
-document.addEventListener("touchmove", preventBehavior, false);
-*/
- 
-/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
-see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
-for more details -jm */
-/*
-function handleOpenURL(url)
-{
-// TODO: do something with the url passed in.
-}
-*/
- 
-function onBodyLoad()
-{
-document.addEventListener("deviceready", onDeviceReady, false);
-}
- 
-    function downloadFile(){
-        window.requestFileSystem(
-                     LocalFileSystem.PERSISTENT, 0, 
-                     function onFileSystemSuccess(fileSystem) {
-                     fileSystem.root.getFile(
-                                 "dummy.html", {create: true, exclusive: false}, 
-                                 function gotFileEntry(fileEntry){
-                                 var sPath = fileEntry.fullPath.replace("dummy.html","");
-                                 var fileTransfer = new FileTransfer();
-                                 fileEntry.remove();
- 
-                                 fileTransfer.download(
-                                           "http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf",
-                                           sPath + "theFile.pdf",
-                                           function(theFile) {
-                                           console.log("download complete: " + theFile.toURI());
-                                           showLink(theFile.toURI());
-                                           },
-                                           function(error) {
-                                           console.log("download error source " + error.source);
-                                           console.log("download error target " + error.target);
-                                           console.log("upload error code: " + error.code);
-                                           }
-                                           );
-                                 }, 
-                                 fail);
-                     }, 
-                     fail);
- 
-    }
- 
-    function showLink(url){
-        alert(url);
-        var divEl = document.getElementById("ready");
-        var aElem = document.createElement("a");
-        aElem.setAttribute("target", "_blank");
-        aElem.setAttribute("href", url);
-        aElem.appendChild(document.createTextNode("Ready! Click To Open."))
-        divEl.appendChild(aElem);
- 
-    }
- 
- 
-    function fail(evt) {
-        console.log(evt.target.error.code);
-    }
- 
 /* When this function is called, PhoneGap has been initialized and is ready to roll */
 /* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
 see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
 for more details -jm */
 function onDeviceReady()
 {
-// do your thing!
-        downloadFile();
+var interval;
+    function displayImage(){
+    var url = "http://instahot.tk/getImage.php";
+    $.ajax({
+	    url:url,
+	    dataType: "json",
+	    success: function(data){
+		    console.log(data);
+		    $("#image").css({"background":"url('"+data.url+"')"});
+		    $("#image").css({"background-repeat":"no-repeat"});
+		    $("#image").css({"background-size":"contain"});
+		    $("#image").css({"background-attachment":"fixed"});
+		    $("#image").css({"background-color":"black"});
+		    $("#image").css({"background-position":"center center"});
+		
+	    }
+    });
+    }
+    displayImage();
+    interval = setInterval(displayImage, 7000);
+    
 }
-        </script>
+</script>
+<style>
+    body{
+	    margin:0px
+    }
+
+    #image{
+	    /*background: url('https://scontent.cdninstagram.com/hphotos-ash/t51.2885-15/e15/10818038_821142204575758_1943261650_n.jpg');*/
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-attachment: fixed;
+        background-color: black;
+        background-position: center center;
+    }
+</style>
     </head>
     <body>
-        <h1>Hey, it's PhoneGap!</h1>
-<p>Don't know how to get started? Check out <em><a target="_blank" href="/http://www.phonegap.com/start">PhoneGap Start</a><em>
-</p>
-<br />
-    <p>
-        DOWNLOADING FILE...<br />
-        <span id="ready"></span>
-    </p>
-    </body>
+<div id="image"></div>
+
+
+<script type="text/javascript">
+var width = $(window).width();
+var height = $(window).height();
+$("#image").css({"width":width+"px"});
+$("#image").css({"height":height+"px"});
+</script>
+</body>
 </html>
