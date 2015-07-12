@@ -11,7 +11,6 @@
         <!--<script src="js/jquerymobile/jquery.mobile-1.4.5.min.js"></script>-->
         <script type="text/javascript" src="cordova.js"></script>
         <!--<script type="text/javascript" src="js/index.js"></script>-->
-        <script type="text/javascript" src="js/SQLitePlugin.js"></script>
         
     <script type="text/javascript">
  
@@ -22,27 +21,26 @@ see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-cu
 for more details -jm */
 document.addEventListener('deviceready', onDeviceReady, false);
 // Cordova is ready
-function onDeviceReady() {alert(1);
-  //var db = window.sqlitePlugin.openDatabase("Database", "1.0", "Demo", -1);
-  var db = window.sqlitePlugin.openDatabase({name: "my.db", createFromLocation: 1});
-
-  db.transaction(function(tx) {
-    tx.executeSql('DROP TABLE IF EXISTS test_table');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
-
-    tx.executeSql("INSERT INTO test_table (data, data_num) VALUES (?,?)", ["test", 100], function(tx, res) {
-      console.log("insertId: " + res.insertId + " -- probably 1");
-      console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-alert(123);
-      tx.executeSql("select count(id) as cnt from test_table;", [], function(tx, res) {
-        alert("res.rows.length: " + res.rows.length + " -- should be 1");
-        alert("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
-      });
-
-    }, function(e) {
-      alert("ERROR: " + e.message);
+function onDeviceReady() {
+    var db = openDatabase("myApp", 1.0, "App database",200000)
+    
+    db.transaction(function(transaction){
+        transaction.executeSql("CREATE TABLE user (username Integer default NULL, UNIQUE(username));");
+        transaction.executeSql("INSERT INTO user (username) values ('uday');")
     });
-  });
+    
+    db.transaction(function(transaction){
+        transaction.executeSql("SELECT * from user where username=?",['uday'],successCallback,function(e){
+           console.debug("some error")
+       })
+    })
+ 
+    function successCallback(transaction,results){
+        for (var i = 0; i < results.rows.length; i++) {
+            var username = results.rows.item(i).username;
+           alert(username);
+        }
+    }
 }
         </script>
     </head>
