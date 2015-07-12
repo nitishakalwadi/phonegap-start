@@ -26,7 +26,6 @@ function onDeviceReady() {
     
     db.transaction(function(transaction){
         transaction.executeSql("CREATE TABLE user (username Integer default NULL, UNIQUE(username));");
-        transaction.executeSql("INSERT INTO user (username) values ('uday');")
         transaction.executeSql("INSERT INTO user (username) values ('nitish');")
     });
     
