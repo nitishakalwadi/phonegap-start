@@ -37,7 +37,7 @@ function onDeviceReady() {
     })
  
     function successCallback(transaction,results){
-        for (var i = 0; i < results.rows.length; i++) {
+        for (var i = 0; i <= results.rows.length; i++) {
             var username = results.rows.item(i).username;
            alert(username);
         }
