@@ -21,7 +21,7 @@ see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-cu
 for more details -jm */
 document.addEventListener('deviceready', onDeviceReady, false);
  // Cordova is ready
-    function onDeviceReady() {
+    function onDeviceReady() {alert(1);
       var db = window.sqlitePlugin.openDatabase({name: "DB.db"});
 alert(db);
       db.transaction(function(tx) {
