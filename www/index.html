@@ -31,7 +31,7 @@ function onDeviceReady() {
     });
     
     db.transaction(function(transaction){
-        transaction.executeSql("SELECT * from user" ,successCallback,function(e){
+        transaction.executeSql("SELECT * from user ",[],successCallback,function(e){
            console.debug("some error")
        })
     })
