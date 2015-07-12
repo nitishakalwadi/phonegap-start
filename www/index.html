@@ -22,7 +22,7 @@ for more details -jm */
 function onDeviceReady() {
       
     }
-    var db = window.sqlitePlugin.openDatabase({name: "DB"});
+    var db = window.sqlitePlugin.openDatabase({name: "DB.db"});
 
       db.transaction(function(tx) {
         tx.executeSql('DROP TABLE IF EXISTS test_table');
