@@ -20,7 +20,9 @@
 see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
 for more details -jm */
 function onDeviceReady() {
-      var db = window.sqlitePlugin.openDatabase({name: "DB"});
+      
+    }
+    var db = window.sqlitePlugin.openDatabase({name: "DB"});
 
       db.transaction(function(tx) {
         tx.executeSql('DROP TABLE IF EXISTS test_table');
@@ -46,7 +48,6 @@ function onDeviceReady() {
           console.log("ERROR: " + e.message);
         });
       });
-    }
         </script>
     </head>
     <body>
