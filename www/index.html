@@ -30,6 +30,10 @@ function onDeviceReady() {
     });
     
     db.transaction(function(transaction){
+        transaction.executeSql("INSERT INTO user (username) values ('nitish');")
+    });
+    
+    db.transaction(function(transaction){
         transaction.executeSql("SELECT * from user ",[],successCallback,function(e){
            console.debug("some error")
        })
