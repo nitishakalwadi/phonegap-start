@@ -24,8 +24,8 @@ document.addEventListener('deviceready', onDeviceReady, false);
 // Cordova is ready
 function onDeviceReady() {alert(1);
   var db = window.sqlitePlugin.openDatabase("Database", "1.0", "Demo", -1);
-alert(2);
-  db.transaction(function(tx) {
+alert(db);
+  db.transaction(function(tx) {alert(2);
     tx.executeSql('DROP TABLE IF EXISTS test_table');
     tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
 
